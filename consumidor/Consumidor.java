@@ -1,3 +1,7 @@
+package consumidor;
+
+import armazem.Armazem;
+
 public class Consumidor extends Thread {
     private Armazem armazem;
     private int capacidadeDeConsumoDoConsumidor = 20;

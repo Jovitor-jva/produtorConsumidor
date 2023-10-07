@@ -1,3 +1,5 @@
+package armazem;
+
 import java.util.LinkedList;
 
 public class Armazem {

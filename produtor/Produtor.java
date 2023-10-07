@@ -1,4 +1,8 @@
-class Produtor extends Thread {
+package produtor;
+
+import armazem.Armazem;
+
+public class Produtor extends Thread {
     private Armazem armazem;
     private int itensProduzidos = 0;
     private int capacidadeDeProducaoDoArmazem = 20;
