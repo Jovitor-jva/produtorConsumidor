@@ -15,16 +15,17 @@ public class Armazem {
             }
         }
         buffer.add(item);
-        System.out.println("Produtor pegou o item " + item + " do armazem");
+        System.out.println("Produtor colocou o item " + item + " do armazem");
         notifyAll();
     }
 
-    public synchronized int getConsumoDoArmazem() {
+    public synchronized int getConsumoDoArmazem() throws Exception {
         while (buffer.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                throw new Exception("O armazém está vázio");
             }
         }
         int item = buffer.remove();
