@@ -3,24 +3,23 @@ package armazem;
 import java.util.LinkedList;
 
 public class Armazem {
-    private LinkedList<Integer> buffer = new LinkedList<>();
-    public int capacidadeDoArmazem = 10;
+    private LinkedList<Integer> capacidadeDoArmazem = new LinkedList<>();
 
     public synchronized void getProducaoDoArmazem(int item) {
-        while (buffer.size() == capacidadeDoArmazem) {
+        while (capacidadeDoArmazem.size() >= 10) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        buffer.add(item);
+        capacidadeDoArmazem.add(item);
         System.out.println("Produtor colocou o item " + item + " do armazem");
         notifyAll();
     }
 
     public synchronized int getConsumoDoArmazem() throws Exception {
-        while (buffer.isEmpty()) {
+        while (capacidadeDoArmazem.size() == 0) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -28,7 +27,7 @@ public class Armazem {
                 throw new Exception("O armazém está vázio");
             }
         }
-        int item = buffer.remove();
+        int item = capacidadeDoArmazem.remove(0);
         System.out.println("Consumidor pegou o item " + item + " do armazem");
         notifyAll();
         return item;
