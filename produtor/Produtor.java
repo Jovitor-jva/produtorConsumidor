@@ -13,7 +13,7 @@ public class Produtor extends Thread {
 
     public void run() {
         for (int i = 1; i <= quantidadeDeItensQueOProdutorVaiConsumir; i++) {
-            armazem.getProducaoDoArmazem(i);
+            armazem.produzirItens(i);
             itensProduzidos++;
         }
     }

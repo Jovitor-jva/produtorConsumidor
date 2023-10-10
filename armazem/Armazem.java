@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Armazem {
     private LinkedList<Integer> capacidadeDoArmazem = new LinkedList<>();
 
-    public synchronized void getProducaoDoArmazem(int item) {
+    public synchronized void produzirItens(int item) {
         while (capacidadeDoArmazem.size() >= 10) {
             try {
                 wait();
@@ -18,8 +18,8 @@ public class Armazem {
         notifyAll();
     }
 
-    public synchronized int getConsumoDoArmazem() throws Exception {
-        while (capacidadeDoArmazem.size() == 0) {
+    public synchronized int consumirItens() throws Exception {
+        while (capacidadeDoArmazem.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {

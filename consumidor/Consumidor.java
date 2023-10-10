@@ -13,9 +13,9 @@ public class Consumidor extends Thread {
     public void run() {
         for (int i = 1; i < quantidadeDeItensQueOConsumidorVaiConsumir; i++) {
             try {
-                armazem.getConsumoDoArmazem();
+                armazem.consumirItens();
             } catch (Exception e) {
-                e.printStackTrace();
+                Thread.interrupted();
             }
         }
     }
